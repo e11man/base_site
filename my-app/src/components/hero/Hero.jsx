@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import SplitText from '../SplitText';
+import RotatingText from '../../RotatingText/RotatingText';
 import { heroContent } from '../../content';
 import './Hero.css';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
 
@@ -32,26 +32,27 @@ const Hero = () => {
     }
   }, [isLoaded]);
 
-  // Simple word rotation
-  useEffect(() => {
-    if (!isLoaded) return;
-    
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2500);
-
-    return () => clearInterval(interval);
-  }, [isLoaded, rotatingWords.length]);
-
   return (
     <section className={`hero ${isLoaded ? 'hero--loaded' : ''}`} id="hero">
       <div className="hero__content">
         <div className="hero__text-container">
           <div className="hero__title-wrapper">
             <span className="hero__title-prefix">We help businesses </span>
-            <span className="hero__rotating-text">
-              {rotatingWords[currentWordIndex]}
-            </span>
+            <div className="hero__rotating-text-container">
+              <RotatingText
+                texts={rotatingWords}
+                className="hero__rotating-text"
+                rotationInterval={2500}
+                transition={{ type: "spring", damping: 30, stiffness: 400, duration: 0.5 }}
+                initial={{ y: "50%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-50%", opacity: 0 }}
+                animatePresenceMode="wait"
+                splitBy="characters"
+                staggerDuration={0.03}
+                staggerFrom="center"
+              />
+            </div>
             <span className="hero__title-suffix"> their future</span>
           </div>
           
