@@ -8,7 +8,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
   color: white;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 2rem;
   opacity: 0;
   transform: translateY(20px);
@@ -67,48 +67,83 @@
 
 .hero__rotating-text {
   display: inline-flex;
-  background: linear-gradient(135deg, #FFD700, #FF6B6B, #4ECDC4);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
+  color: #FFD700;
   font-weight: 900;
-  text-shadow: none;
   min-width: 200px;
   text-align: center;
+  position: relative;
+  overflow: visible;
+  height: auto;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
+  /* Subtle animation for visual interest */
+  animation: colorPulse 6s ease-in-out infinite;
+}
+
+/* Simple color animation for visual appeal */
+@keyframes colorPulse {
+  0% { 
+    color: #FFD700; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
+  }
+  33% { 
+    color: #FF6B6B; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 107, 107, 0.4);
+  }
+  66% { 
+    color: #4ECDC4; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(78, 205, 196, 0.4);
+  }
+  100% { 
+    color: #FFD700; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Ensure all rotating text elements inherit the color */
+.hero__rotating-text .text-rotate-element {
+  color: inherit;
+  text-shadow: inherit;
+}
+
+/* Enhanced visibility and performance */
+.hero__rotating-text * {
+  overflow: visible;
+  position: relative;
+}
+
+.hero__rotating-text .text-rotate-element {
+  transform-origin: center;
+  will-change: transform, opacity;
+  /* Ensure crisp text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hero__rotating-text .text-rotate {
   display: inline-flex;
+  overflow: visible;
+  position: relative;
+  min-height: 1.2em;
 }
 
 .hero__rotating-word,
 .hero__rotating-text .text-rotate-word {
-  overflow: hidden;
+  overflow: visible;
   display: inline-flex;
+  position: relative;
 }
 
 .hero__rotating-char,
 .hero__rotating-text .text-rotate-element {
   display: inline-block;
+  position: relative;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Removed gradientShift animation - using colorPulse instead */
 
 .hero__subtitle-container {
   margin-bottom: 2.5rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero__subtitle {

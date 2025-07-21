@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   white-space: pre-wrap;
   position: relative;
+  overflow: visible;
+  min-height: 1.2em;
 }
 
 .text-rotate-sr-only {
@@ -19,6 +21,8 @@
 
 .text-rotate-word {
   display: inline-flex;
+  overflow: visible;
+  position: relative;
 }
 
 .text-rotate-lines {
@@ -29,6 +33,12 @@
 
 .text-rotate-element {
   display: inline-block;
+  position: relative;
+  overflow: visible;
+  /* Ensure crisp text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
 }
 
 .text-rotate-space {

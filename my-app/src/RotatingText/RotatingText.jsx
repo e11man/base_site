@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 import "./RotatingText.css";
 
@@ -160,7 +160,7 @@ const RotatingText = forwardRef((props, ref) => {
   }, [next, rotationInterval, auto]);
 
   return (
-    <motion.span
+    <Motion.span
       className={cn("text-rotate", mainClassName)}
       {...rest}
       layout
@@ -171,7 +171,7 @@ const RotatingText = forwardRef((props, ref) => {
         mode={animatePresenceMode}
         initial={animatePresenceInitial}
       >
-        <motion.span
+        <Motion.span
           key={currentTextIndex}
           className={cn(
             splitBy === "lines" ? "text-rotate-lines" : "text-rotate",
@@ -189,7 +189,7 @@ const RotatingText = forwardRef((props, ref) => {
                 className={cn("text-rotate-word", splitLevelClassName)}
               >
                 {wordObj.characters.map((char, charIndex) => (
-                  <motion.span
+                  <Motion.span
                     key={charIndex}
                     initial={initial}
                     animate={animate}
@@ -207,7 +207,7 @@ const RotatingText = forwardRef((props, ref) => {
                     className={cn("text-rotate-element", elementLevelClassName)}
                   >
                     {char}
-                  </motion.span>
+                  </Motion.span>
                 ))}
                 {wordObj.needsSpace && (
                   <span className="text-rotate-space"> </span>
@@ -215,9 +215,9 @@ const RotatingText = forwardRef((props, ref) => {
               </span>
             );
           })}
-        </motion.span>
+        </Motion.span>
       </AnimatePresence>
-    </motion.span>
+    </Motion.span>
   );
 });
 
