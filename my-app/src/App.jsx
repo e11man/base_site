@@ -5,41 +5,63 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: '80px' }}>
-        <section style={{ padding: '2rem 4%' }}>
-          <h1>Sample Page</h1>
+      
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Lorem Ipsum</h1>
+          <p>Dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </section>
+
+      {/* Content Sections */}
+      <section className="content-section">
+        <div className="container">
+          <h2>Section 1</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius
-            ligula sed odio mattis, a efficitur lorem viverra. Curabitur sed quam
-            sed mauris volutpat tincidunt. Donec non odio eget sapien tincidunt
-            tincidunt. Maecenas commodo justo vel ipsum ultricies, ac luctus ipsum
-            hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et
-            ultrices posuere cubilia curae; Etiam sed lorem non massa suscipit
-            bibendum. Integer bibendum ullamcorper dolor, at convallis massa
-            viverra in. Sed et nisl interdum, faucibus augue sit amet, sollicitudin
-            eros. Vestibulum vitae felis ac nulla placerat gravida.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2>Section 2</h2>
           <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas. Vivamus in mi nec lacus lacinia ultricies.
-            Suspendisse potenti. Integer fermentum turpis id metus tristique
-            pharetra. Morbi euismod aliquet felis, eu porta lacus varius non.
-            Pellentesque at libero odio. Vestibulum id commodo dui, id efficitur
-            elit. Integer porta tincidunt diam non fermentum.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2>Section 3</h2>
           <p>
-            Cras non tortor sed metus suscipit elementum. Sed consectetur ex
-            sapien, in pharetra tortor condimentum quis. Proin lacinia mauris non
-            nulla pharetra volutpat. Nullam malesuada nec urna sed bibendum. Duis
-            volutpat nisl a metus congue, nec tempor lorem tincidunt. Mauris ac
-            hendrerit nisl. Cras a est at dui pharetra dignissim. Integer vel
-            lectus imperdiet, euismod neque in, commodo elit.
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
           </p>
-        </section>
-        <section style={{ height: '120vh' }}>
-          {/* Extra space for scrolling */}
-        </section>
-      </main>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2>Section 4</h2>
+          <p>
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+          </p>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2>Section 5</h2>
+          <p>
+            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+          </p>
+        </div>
+      </section>
+
+      {/* Extra space for scrolling */}
+      <section style={{ height: '100vh' }}></section>
     </>
   );
 }
