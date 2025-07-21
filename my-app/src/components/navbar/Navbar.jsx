@@ -6,9 +6,11 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isHamburgerAnimating, setIsHamburgerAnimating] = useState(false);
   const navbarRef = useRef(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+  const mobileMenuRef = useRef(null);
   
   // Set loaded state after component mounts for entrance animation
   useEffect(() => {
@@ -57,17 +59,60 @@ export default function Navbar() {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
     } else {
+      const scrollY = document.body.style.top;
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
 
     return () => {
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
     };
   }, [isMobileMenuOpen]);
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
+
+  // Focus management for accessibility
+  useEffect(() => {
+    if (isMobileMenuOpen && mobileMenuRef.current) {
+      const firstLink = mobileMenuRef.current.querySelector('.navbar__mobile-link');
+      if (firstLink) {
+        setTimeout(() => firstLink.focus(), 100);
+      }
+    }
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
+    setIsHamburgerAnimating(true);
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    
+    // Reset animation state after transition
+    setTimeout(() => setIsHamburgerAnimating(false), 400);
+  };
+
+  const handleMobileLinkClick = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -92,7 +137,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        <nav className="navbar__nav">
+        <nav className="navbar__nav" aria-label="Main navigation">
           <ul className="navbar__links">
             <li><a href="#" className="navbar__link">Home</a></li>
             <li><a href="#" className="navbar__link">About</a></li>
@@ -104,30 +149,93 @@ export default function Navbar() {
         <div className="navbar__actions">
           <a href="#" className="navbar__cta-button">Contact Us</a>
           <button 
-            className={`navbar__mobile-toggle ${isMobileMenuOpen ? 'active' : ''}`} 
+            className={`navbar__mobile-toggle ${isMobileMenuOpen ? 'active' : ''} ${isHamburgerAnimating ? 'animating' : ''}`} 
             onClick={toggleMobileMenu}
             aria-expanded={isMobileMenuOpen}
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-controls="mobile-menu"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span className="navbar__mobile-toggle-line navbar__mobile-toggle-line--top"></span>
+            <span className="navbar__mobile-toggle-line navbar__mobile-toggle-line--middle"></span>
+            <span className="navbar__mobile-toggle-line navbar__mobile-toggle-line--bottom"></span>
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`navbar__mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+      <div 
+        id="mobile-menu"
+        className={`navbar__mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}
+        ref={mobileMenuRef}
+        aria-hidden={!isMobileMenuOpen}
+      >
         <div className="navbar__mobile-menu-container">
-          <nav className="navbar__mobile-nav">
+          <nav className="navbar__mobile-nav" aria-label="Mobile navigation">
             <ul className="navbar__mobile-links">
-              <li><a href="#" className="navbar__mobile-link">Home</a></li>
-              <li><a href="#" className="navbar__mobile-link">About</a></li>
-              <li><a href="#" className="navbar__mobile-link">Services</a></li>
-              <li><a href="#" className="navbar__mobile-link">Portfolio</a></li>
-              <li><a href="#" className="navbar__mobile-link navbar__mobile-cta">Contact Us</a></li>
+              <li>
+                <a 
+                  href="#" 
+                  className="navbar__mobile-link"
+                  onClick={handleMobileLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="navbar__mobile-link"
+                  onClick={handleMobileLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="navbar__mobile-link"
+                  onClick={handleMobileLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="navbar__mobile-link"
+                  onClick={handleMobileLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                >
+                  Portfolio
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="navbar__mobile-link navbar__mobile-cta"
+                  onClick={handleMobileLinkClick}
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                >
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </nav>
+          
+          {/* Mobile menu close button for accessibility */}
+          <button 
+            className="navbar__mobile-close"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close mobile menu"
+            tabIndex={isMobileMenuOpen ? 0 : -1}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
