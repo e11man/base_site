@@ -35,6 +35,10 @@
   display: inline-block;
   position: relative;
   overflow: visible;
+  /* Ensure crisp text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
 }
 
 .text-rotate-space {

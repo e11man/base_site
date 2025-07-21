@@ -67,56 +67,56 @@
 
 .hero__rotating-text {
   display: inline-flex;
-  background: linear-gradient(135deg, #FFD700, #FF6B6B, #4ECDC4);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
+  color: #FFD700;
   font-weight: 900;
-  text-shadow: none;
   min-width: 200px;
   text-align: center;
   position: relative;
   overflow: visible;
   height: auto;
-  /* Fallback for browsers that don't support background-clip: text */
-  color: #FFD700;
-  /* Additional fallback with strong contrast */
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
+  /* Subtle animation for visual interest */
+  animation: colorPulse 6s ease-in-out infinite;
 }
 
-/* Better gradient text support across browsers */
-@supports (-webkit-background-clip: text) or (background-clip: text) {
-  .hero__rotating-text {
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+/* Simple color animation for visual appeal */
+@keyframes colorPulse {
+  0% { 
+    color: #FFD700; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
+  }
+  33% { 
+    color: #FF6B6B; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 107, 107, 0.4);
+  }
+  66% { 
+    color: #4ECDC4; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(78, 205, 196, 0.4);
+  }
+  100% { 
+    color: #FFD700; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.4);
   }
 }
 
-/* Firefox fallback */
-@-moz-document url-prefix() {
-  .hero__rotating-text {
-    color: #FFD700;
-    background: none;
-  }
-}
-
-/* Enhanced visibility for rotating text elements */
+/* Ensure all rotating text elements inherit the color */
 .hero__rotating-text .text-rotate-element {
   color: inherit;
-  -webkit-text-fill-color: inherit;
+  text-shadow: inherit;
 }
 
-/* Debug styles and enhanced visibility */
+/* Enhanced visibility and performance */
 .hero__rotating-text * {
-  overflow: visible !important;
+  overflow: visible;
   position: relative;
 }
 
 .hero__rotating-text .text-rotate-element {
   transform-origin: center;
   will-change: transform, opacity;
+  /* Ensure crisp text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hero__rotating-text .text-rotate {
@@ -139,17 +139,7 @@
   position: relative;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Removed gradientShift animation - using colorPulse instead */
 
 .hero__subtitle-container {
   margin-bottom: 2.5rem;
