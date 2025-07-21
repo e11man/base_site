@@ -8,7 +8,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
   color: white;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 2rem;
   opacity: 0;
   transform: translateY(20px);
@@ -77,21 +77,66 @@
   text-shadow: none;
   min-width: 200px;
   text-align: center;
+  position: relative;
+  overflow: visible;
+  height: auto;
+  /* Fallback for browsers that don't support background-clip: text */
+  color: #FFD700;
+  /* Additional fallback with strong contrast */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Better gradient text support across browsers */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .hero__rotating-text {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Firefox fallback */
+@-moz-document url-prefix() {
+  .hero__rotating-text {
+    color: #FFD700;
+    background: none;
+  }
+}
+
+/* Enhanced visibility for rotating text elements */
+.hero__rotating-text .text-rotate-element {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+/* Debug styles and enhanced visibility */
+.hero__rotating-text * {
+  overflow: visible !important;
+  position: relative;
+}
+
+.hero__rotating-text .text-rotate-element {
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .hero__rotating-text .text-rotate {
   display: inline-flex;
+  overflow: visible;
+  position: relative;
+  min-height: 1.2em;
 }
 
 .hero__rotating-word,
 .hero__rotating-text .text-rotate-word {
-  overflow: hidden;
+  overflow: visible;
   display: inline-flex;
+  position: relative;
 }
 
 .hero__rotating-char,
 .hero__rotating-text .text-rotate-element {
   display: inline-block;
+  position: relative;
 }
 
 @keyframes gradientShift {
@@ -108,7 +153,7 @@
 
 .hero__subtitle-container {
   margin-bottom: 2.5rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero__subtitle {

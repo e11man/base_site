@@ -14,9 +14,7 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleTitleAnimationComplete = () => {
-    setTitleAnimationComplete(true);
-  };
+  // Remove unused function since we handle this in the RotatingText onNext prop
 
   return (
     <section className={`hero ${isLoaded ? 'hero--loaded' : ''}`} id="hero">
@@ -30,12 +28,12 @@ const Hero = () => {
                splitLevelClassName="hero__rotating-word"
                elementLevelClassName="hero__rotating-char"
                staggerFrom="first"
-               initial={{ y: "100%", opacity: 0 }}
+               initial={{ y: 20, opacity: 0 }}
                animate={{ y: 0, opacity: 1 }}
-               exit={{ y: "-120%", opacity: 0 }}
-               staggerDuration={0.02}
-               transition={{ type: "spring", damping: 25, stiffness: 400 }}
-               rotationInterval={3000}
+               exit={{ y: -20, opacity: 0 }}
+               staggerDuration={0.03}
+               transition={{ type: "spring", damping: 18, stiffness: 250, duration: 0.8 }}
+               rotationInterval={3500}
                splitBy="characters"
                loop={true}
                auto={true}
