@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import SplitText from '../SplitText';
-import RotatingText from '../../RotatingText/RotatingText';
 import { heroContent } from '../../content';
 import './Hero.css';
+import RotatingText from '../RotatingText/RotatingText';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,19 +41,25 @@ const Hero = () => {
             <div className="hero__rotating-text-container">
               <RotatingText
                 texts={rotatingWords}
-                className="hero__rotating-text"
-                rotationInterval={2500}
-                transition={{ type: "spring", damping: 30, stiffness: 400, duration: 0.5 }}
-                initial={{ y: "50%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-50%", opacity: 0 }}
+                rotationInterval={3000}
+                transition={{ 
+                  type: "spring", 
+                  damping: 20, 
+                  stiffness: 200, 
+                  duration: 0.8,
+                  ease: "easeInOut"
+                }}
+                initial={{ y: "30%", opacity: 0, scale: 0.9 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: "-30%", opacity: 0, scale: 0.9 }}
                 animatePresenceMode="wait"
-                splitBy="characters"
-                staggerDuration={0.03}
+                splitBy="words"
+                staggerDuration={0.1}
                 staggerFrom="center"
+                mainClassName="font-bold text-3xl md:text-4xl lg:text-5xl text-white bg-purple-600 px-4 py-2 rounded-lg shadow-lg"
               />
             </div>
-            <span className="hero__title-suffix"> their future</span>
+            
           </div>
           
           <div className={`hero__subtitle-container ${subtitleVisible ? 'hero__subtitle-container--visible' : ''}`}>

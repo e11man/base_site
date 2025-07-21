@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { motion as Motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import "./RotatingText.css";
 
@@ -91,7 +91,7 @@ const RotatingText = forwardRef((props, ref) => {
       }
       return Math.abs(staggerFrom - index) * staggerDuration;
     },
-    [staggerFrom, staggerDuration],
+    [staggerFrom, staggerDuration]
   );
 
   const handleIndexChange = useCallback(
@@ -99,7 +99,7 @@ const RotatingText = forwardRef((props, ref) => {
       setCurrentTextIndex(newIndex);
       if (onNext) onNext(newIndex);
     },
-    [onNext],
+    [onNext]
   );
 
   const next = useCallback(() => {
@@ -133,7 +133,7 @@ const RotatingText = forwardRef((props, ref) => {
         handleIndexChange(validIndex);
       }
     },
-    [texts.length, currentTextIndex, handleIndexChange],
+    [texts.length, currentTextIndex, handleIndexChange]
   );
 
   const reset = useCallback(() => {
@@ -150,7 +150,7 @@ const RotatingText = forwardRef((props, ref) => {
       jumpTo,
       reset,
     }),
-    [next, previous, jumpTo, reset],
+    [next, previous, jumpTo, reset]
   );
 
   useEffect(() => {
@@ -160,21 +160,18 @@ const RotatingText = forwardRef((props, ref) => {
   }, [next, rotationInterval, auto]);
 
   return (
-    <Motion.span
+    <motion.span
       className={cn("text-rotate", mainClassName)}
       {...rest}
       layout
       transition={transition}
     >
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence
-        mode={animatePresenceMode}
-        initial={animatePresenceInitial}
-      >
-        <Motion.span
+      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+        <motion.span
           key={currentTextIndex}
           className={cn(
-            splitBy === "lines" ? "text-rotate-lines" : "text-rotate",
+            splitBy === "lines" ? "text-rotate-lines" : "text-rotate"
           )}
           layout
           aria-hidden="true"
@@ -189,7 +186,7 @@ const RotatingText = forwardRef((props, ref) => {
                 className={cn("text-rotate-word", splitLevelClassName)}
               >
                 {wordObj.characters.map((char, charIndex) => (
-                  <Motion.span
+                  <motion.span
                     key={charIndex}
                     initial={initial}
                     animate={animate}
@@ -200,14 +197,14 @@ const RotatingText = forwardRef((props, ref) => {
                         previousCharsCount + charIndex,
                         array.reduce(
                           (sum, word) => sum + word.characters.length,
-                          0,
-                        ),
+                          0
+                        )
                       ),
                     }}
                     className={cn("text-rotate-element", elementLevelClassName)}
                   >
                     {char}
-                  </Motion.span>
+                  </motion.span>
                 ))}
                 {wordObj.needsSpace && (
                   <span className="text-rotate-space"> </span>
@@ -215,9 +212,9 @@ const RotatingText = forwardRef((props, ref) => {
               </span>
             );
           })}
-        </Motion.span>
+        </motion.span>
       </AnimatePresence>
-    </Motion.span>
+    </motion.span>
   );
 });
 
