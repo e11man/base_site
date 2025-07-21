@@ -5,6 +5,9 @@
   position: relative;
   overflow: visible;
   min-height: 1.2em;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-rotate-sr-only {
@@ -23,6 +26,8 @@
   display: inline-flex;
   overflow: visible;
   position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-rotate-lines {
@@ -39,6 +44,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   backface-visibility: hidden;
+  /* Smooth transitions for better animation */
+  transition: all 0.3s ease;
 }
 
 .text-rotate-space {
