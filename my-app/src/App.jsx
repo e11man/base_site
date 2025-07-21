@@ -1,4 +1,5 @@
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
+import Hero from './components/hero/Hero';
 import './App.css';
 
 export default function App() {
@@ -7,12 +8,7 @@ export default function App() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>Lorem Ipsum</h1>
-          <p>Dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </section>
+      <Hero />
 
       {/* Content Sections */}
       <section className="content-section">
