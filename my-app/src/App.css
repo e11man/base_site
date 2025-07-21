@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #fff;
+  background: #010915;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
