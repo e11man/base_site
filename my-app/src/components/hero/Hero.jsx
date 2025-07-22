@@ -38,25 +38,23 @@ const Hero = () => {
         <div className="hero__text-container">
           <div className="hero__title-wrapper">
             <span className="hero__title-prefix">We help businesses </span>
-            <div className="hero__rotating-text-container">
+            <div className="rotating-text-container">
               <RotatingText
                 texts={rotatingWords}
-                rotationInterval={3000}
+                rotationInterval={2500}
                 transition={{ 
                   type: "spring", 
-                  damping: 20, 
-                  stiffness: 200, 
-                  duration: 0.8,
-                  ease: "easeInOut"
+                  damping: 25, 
+                  stiffness: 300, 
+                  duration: 0.6
                 }}
-                initial={{ y: "30%", opacity: 0, scale: 0.9 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: "-30%", opacity: 0, scale: 0.9 }}
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
                 animatePresenceMode="wait"
                 splitBy="words"
-                staggerDuration={0.1}
+                staggerDuration={0.05}
                 staggerFrom="center"
-                mainClassName="font-bold text-3xl md:text-4xl lg:text-5xl text-white bg-purple-600 px-4 py-2 rounded-lg shadow-lg"
               />
             </div>
             

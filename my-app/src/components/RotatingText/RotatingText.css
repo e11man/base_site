@@ -1,8 +1,28 @@
 .text-rotate {
-  display: flex;
-  flex-wrap: wrap;
-  white-space: pre-wrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   position: relative;
+  /* Fixed dimensions to prevent layout shifts */
+  min-width: 200px;
+  height: 60px;
+  /* Block styling like React Bits */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 0 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  /* Text styling */
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  /* Smooth transitions */
+  transition: all 0.3s ease;
+}
+
+.text-rotate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .text-rotate-sr-only {
@@ -19,6 +39,7 @@
 
 .text-rotate-word {
   display: inline-flex;
+  position: relative;
 }
 
 .text-rotate-lines {
@@ -33,4 +54,45 @@
 
 .text-rotate-space {
   white-space: pre;
+}
+
+/* Container for the rotating text to prevent layout shifts */
+.rotating-text-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Fixed width based on longest expected word */
+  width: 200px;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .text-rotate {
+    min-width: 160px;
+    height: 50px;
+    font-size: 1rem;
+    padding: 0 16px;
+  }
+  
+  .rotating-text-container {
+    width: 160px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-rotate {
+    min-width: 140px;
+    height: 45px;
+    font-size: 0.9rem;
+    padding: 0 12px;
+  }
+  
+  .rotating-text-container {
+    width: 140px;
+    height: 45px;
+  }
 }
