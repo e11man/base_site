@@ -1,0 +1,26 @@
+/* LightRays Component Styles */
+.light-rays-container {
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.light-rays-canvas {
+  filter: blur(0.5px);
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Performance optimizations */
+.light-rays-container * {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Custom class support */
+.custom-rays {
+  /* Additional styles can be added here */
+}

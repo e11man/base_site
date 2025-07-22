@@ -3,6 +3,7 @@ import SplitText from '../SplitText';
 import { heroContent } from '../../content';
 import './Hero.css';
 import RotatingText from '../RotatingText/RotatingText';
+import LightRays from '../LightRays';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,12 +87,20 @@ const Hero = () => {
         </div>
       </div>
       
-      {/* Responsive decorative elements */}
-      <div className="hero__background">
-        <div className="hero__shape hero__shape--1"></div>
-        <div className="hero__shape hero__shape--2"></div>
-        <div className="hero__shape hero__shape--3"></div>
-        <div className="hero__shape hero__shape--4"></div>
+      {/* LightRays Background */}
+      <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+        <LightRays 
+          raysOrigin="top-center" 
+          raysColor="#00FFFF" 
+          raysSpeed={1.5} 
+          lightSpread={0.8} 
+          rayLength={1.2} 
+          followMouse={true} 
+          mouseInfluence={0.1} 
+          noiseAmount={0.1} 
+          distortion={0.05} 
+          className="custom-rays" 
+        />
       </div>
     </section>
   );
