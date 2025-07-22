@@ -52,15 +52,18 @@
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 2rem;
+  /* Force single line layout */
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: baseline;
-  gap: 0.3em;
+  gap: 0.2em;
   text-align: center;
   /* Ensure consistent baseline alignment */
   min-height: 5.4rem;
   padding: 0.5rem 0;
+  /* Prevent wrapping to new lines */
+  white-space: nowrap;
 }
 
 .hero__title-prefix,
@@ -73,9 +76,12 @@
   line-height: inherit;
   display: inline;
   vertical-align: baseline;
+  /* Prevent wrapping */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Container for rotating text - perfect integration */
+/* Container for rotating text - perfect inline integration */
 .rotating-text-container {
   display: inline !important;
   vertical-align: baseline;
@@ -84,6 +90,9 @@
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
+  /* Prevent wrapping */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hero__subtitle-container {

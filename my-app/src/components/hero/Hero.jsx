@@ -9,8 +9,8 @@ const Hero = () => {
   const [subtitleVisible, setSubtitleVisible] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
 
-  // Updated rotating words to be more cohesive with business theme
-  const rotatingWords = ['innovate', 'transform', 'create', 'build', 'grow', 'succeed'];
+  // Shorter, more compact words for better inline flow
+  const rotatingWords = ['innovate', 'grow', 'succeed', 'create', 'build', 'scale'];
 
   // Set loaded state after component mounts for entrance animation
   useEffect(() => {
@@ -42,16 +42,16 @@ const Hero = () => {
             <div className="rotating-text-container">
               <RotatingText
                 texts={rotatingWords}
-                rotationInterval={3000}
+                rotationInterval={3200}
                 transition={{ 
                   type: "spring", 
-                  damping: 30, 
-                  stiffness: 400, 
-                  duration: 0.4
+                  damping: 40, 
+                  stiffness: 500, 
+                  duration: 0.5
                 }}
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "-100%", opacity: 0 }}
+                initial={{ y: "100%", opacity: 0, scale: 0.95 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                exit={{ y: "-100%", opacity: 0, scale: 0.95 }}
                 animatePresenceMode="wait"
                 splitBy="words"
                 staggerDuration={0.02}

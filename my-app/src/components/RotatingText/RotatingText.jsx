@@ -20,9 +20,9 @@ const RotatingText = forwardRef((props, ref) => {
   const {
     texts,
     transition = { type: "spring", damping: 25, stiffness: 300 },
-    initial = { y: "100%", opacity: 0 },
-    animate = { y: 0, opacity: 1 },
-    exit = { y: "-120%", opacity: 0 },
+    initial = { y: "100%", opacity: 0, scale: 0.9 },
+    animate = { y: 0, opacity: 1, scale: 1 },
+    exit = { y: "-120%", opacity: 0, scale: 0.9 },
     animatePresenceMode = "wait",
     animatePresenceInitial = false,
     rotationInterval = 2000,
@@ -164,7 +164,10 @@ const RotatingText = forwardRef((props, ref) => {
       className={cn("text-rotate", mainClassName)}
       {...rest}
       layout
-      transition={transition}
+      transition={{
+        ...transition,
+        layout: { duration: 0.6, ease: "easeInOut" }
+      }}
     >
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
@@ -175,6 +178,9 @@ const RotatingText = forwardRef((props, ref) => {
           )}
           layout
           aria-hidden="true"
+          transition={{
+            layout: { duration: 0.6, ease: "easeInOut" }
+          }}
         >
           {elements.map((wordObj, wordIndex, array) => {
             const previousCharsCount = array

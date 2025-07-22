@@ -4,23 +4,24 @@
   justify-content: center;
   white-space: nowrap;
   position: relative;
-  /* Fixed dimensions to prevent layout shifts - optimized for all words */
-  min-width: 240px;
+  /* Dynamic width that expands smoothly */
+  width: auto;
+  min-width: 120px;
   height: auto;
-  min-height: 1.2em; /* Match line-height for perfect alignment */
+  min-height: 1.1em;
   /* Cohesive theme styling - matching navbar gradient */
   background: linear-gradient(135deg, #6e8efb, #a777e3);
-  border-radius: 8px;
-  padding: 0.15em 0.6em;
-  box-shadow: 0 2px 8px rgba(110, 142, 251, 0.25);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+  box-shadow: 0 2px 6px rgba(110, 142, 251, 0.25);
   /* Text styling - inherit parent font properties for seamless integration */
   color: white;
   font-weight: inherit;
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
-  /* Smooth transitions - matching site's cubic-bezier */
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Smooth expanding transitions */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   /* Glassmorphism effect for modern look */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -29,7 +30,12 @@
   overflow: hidden;
   /* Perfect vertical alignment */
   vertical-align: baseline;
-  margin: 0 0.1em;
+  margin: 0 0.05em;
+  /* Prevent any wrapping */
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* Ensure single instance */
+  position: relative;
 }
 
 .text-rotate::before {
@@ -46,7 +52,7 @@
 
 .text-rotate:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(110, 142, 251, 0.35);
+  box-shadow: 0 3px 10px rgba(110, 142, 251, 0.35);
   background: linear-gradient(135deg, #5d7df9, #9a67e0);
 }
 
@@ -75,6 +81,8 @@
 .text-rotate-word {
   display: inline-flex;
   position: relative;
+  /* Smooth width transitions */
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .text-rotate-lines {
@@ -85,6 +93,8 @@
 
 .text-rotate-element {
   display: inline-block;
+  /* Smooth character animations */
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .text-rotate-space {
@@ -98,24 +108,28 @@
   margin: 0;
   padding: 0;
   line-height: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* Ensure single container */
+  position: relative;
 }
 
-/* Mobile responsive adjustments - maintain proportions */
+/* Mobile responsive adjustments - maintain inline flow */
 @media (max-width: 768px) {
   .text-rotate {
-    min-width: 200px;
-    padding: 0.12em 0.5em;
-    border-radius: 6px;
-    margin: 0 0.08em;
+    min-width: 100px;
+    padding: 0.08em 0.3em;
+    border-radius: 5px;
+    margin: 0 0.04em;
   }
 }
 
 @media (max-width: 480px) {
   .text-rotate {
-    min-width: 180px;
-    padding: 0.1em 0.4em;
-    border-radius: 5px;
-    margin: 0 0.06em;
+    min-width: 80px;
+    padding: 0.06em 0.25em;
+    border-radius: 4px;
+    margin: 0 0.03em;
   }
 }
 
@@ -135,7 +149,9 @@
 /* Reduced motion accessibility - consistent with site */
 @media (prefers-reduced-motion: reduce) {
   .text-rotate,
-  .text-rotate::before {
+  .text-rotate::before,
+  .text-rotate-word,
+  .text-rotate-element {
     transition-duration: 0.1s;
   }
   
