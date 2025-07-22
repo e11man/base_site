@@ -45,17 +45,17 @@ const Hero = () => {
                 rotationInterval={3200}
                 transition={{ 
                   type: "spring", 
-                  damping: 40, 
-                  stiffness: 500, 
-                  duration: 0.5
+                  damping: 60, // Increased damping for less bounce
+                  stiffness: 350, // Reduced stiffness for smoother motion
+                  duration: 0.4 // Shorter duration for quicker, smoother transitions
                 }}
-                initial={{ y: "100%", opacity: 0, scale: 0.95 }}
+                initial={{ y: "50%", opacity: 0, scale: 0.98 }} // Less dramatic initial state
                 animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: "-100%", opacity: 0, scale: 0.95 }}
+                exit={{ y: "-50%", opacity: 0, scale: 0.98 }} // Less dramatic exit to reduce jerkiness
                 animatePresenceMode="wait"
                 splitBy="words"
-                staggerDuration={0.02}
-                staggerFrom="center"
+                staggerDuration={0.01} // Reduced stagger for smoother prefix animation
+                staggerFrom="first" // Start from first character for more natural flow
               />
             </div>
           </div>
