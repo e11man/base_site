@@ -4,15 +4,15 @@
   justify-content: center;
   white-space: nowrap;
   position: relative;
-  /* Dynamic width that expands smoothly */
-  width: auto;
-  min-width: 120px;
+  /* Dynamic width that scales perfectly to content */
+  width: fit-content;
+  min-width: 0; /* Remove fixed min-width to allow natural scaling */
   height: auto;
   min-height: 1.1em;
   /* Cohesive theme styling - matching navbar gradient */
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   border-radius: 6px;
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.5em; /* Slightly more horizontal padding for better balance */
   box-shadow: 0 2px 6px rgba(110, 142, 251, 0.25);
   /* Text styling - inherit parent font properties for seamless integration */
   color: white;
@@ -20,8 +20,8 @@
   font-size: inherit;
   line-height: inherit;
   font-family: inherit;
-  /* Smooth expanding transitions */
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Smoother expanding transitions with better easing */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   /* Glassmorphism effect for modern look */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -46,7 +46,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
+  transition: left 0.5s ease;
   z-index: 1;
 }
 
@@ -81,8 +81,8 @@
 .text-rotate-word {
   display: inline-flex;
   position: relative;
-  /* Smooth width transitions */
-  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Smoother width transitions that scale naturally */
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .text-rotate-lines {
@@ -93,15 +93,15 @@
 
 .text-rotate-element {
   display: inline-block;
-  /* Smooth character animations */
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Smoother character animations with less bounce */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .text-rotate-space {
   white-space: pre;
 }
 
-/* Container for the rotating text - seamless integration */
+/* Container for the rotating text - simplified for no double box effect */
 .rotating-text-container {
   display: inline !important;
   vertical-align: baseline;
@@ -110,15 +110,19 @@
   line-height: inherit;
   white-space: nowrap;
   flex-shrink: 0;
-  /* Ensure single container */
+  /* Remove any conflicting styles */
   position: relative;
+  /* Ensure no background or border conflicts */
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Mobile responsive adjustments - maintain inline flow */
+/* Mobile responsive adjustments - maintain inline flow and natural scaling */
 @media (max-width: 768px) {
   .text-rotate {
-    min-width: 100px;
-    padding: 0.08em 0.3em;
+    min-width: 0; /* Allow natural scaling on mobile */
+    padding: 0.08em 0.4em;
     border-radius: 5px;
     margin: 0 0.04em;
   }
@@ -126,8 +130,8 @@
 
 @media (max-width: 480px) {
   .text-rotate {
-    min-width: 80px;
-    padding: 0.06em 0.25em;
+    min-width: 0; /* Allow natural scaling on small mobile */
+    padding: 0.06em 0.3em;
     border-radius: 4px;
     margin: 0 0.03em;
   }
