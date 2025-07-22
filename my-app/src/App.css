@@ -8,18 +8,33 @@ body {
   color: #333;
   background: #fff;
   line-height: 1.6;
+  /* Smooth scrolling for better UX */
+  scroll-behavior: smooth;
 }
 
 /* App Styles */
 
-/* Content Sections */
+/* Content Sections with enhanced theme consistency */
 .content-section {
   padding: 6rem 0;
   background: #fff;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .content-section:nth-child(even) {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+/* Add subtle gradient overlay for visual interest */
+.content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(110, 142, 251, 0.2), transparent);
 }
 
 .container {
@@ -27,13 +42,29 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
+  position: relative;
 }
 
 .content-section h2 {
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 2rem;
   color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+/* Add subtle accent underline to section headers */
+.content-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  border-radius: 2px;
 }
 
 .content-section p {
@@ -42,10 +73,21 @@ body {
   margin: 0 auto;
   color: #666;
   line-height: 1.8;
+  font-weight: 400;
+}
+
+/* Add hover effect for sections */
+.content-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(110, 142, 251, 0.05);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .content-section {
+    padding: 4rem 0;
+  }
+
   .content-section h2 {
     font-size: 2rem;
   }
@@ -61,10 +103,40 @@ body {
 
 @media (max-width: 480px) {
   .content-section {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
   
   .content-section h2 {
     font-size: 1.75rem;
+  }
+
+  .content-section h2::after {
+    width: 40px;
+    height: 2px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    scroll-behavior: auto;
+  }
+  
+  .content-section,
+  .content-section:hover {
+    transition: none;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .content-section h2::after {
+    background: #000;
+  }
+  
+  .content-section::before {
+    background: #000;
   }
 }

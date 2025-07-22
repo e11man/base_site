@@ -7,22 +7,51 @@
   /* Fixed dimensions to prevent layout shifts */
   min-width: 200px;
   height: 60px;
-  /* Block styling like React Bits */
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Cohesive theme styling - matching navbar gradient */
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
   border-radius: 12px;
   padding: 0 20px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  /* Text styling */
+  box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
+  /* Text styling - consistent with site theme */
   color: white;
   font-weight: 700;
   font-size: 1.2rem;
-  /* Smooth transitions */
-  transition: all 0.3s ease;
+  /* Smooth transitions - matching site's cubic-bezier */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Glassmorphism effect for modern look */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Shine effect overlay */
+  overflow: hidden;
+}
+
+.text-rotate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
 }
 
 .text-rotate:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+  background: linear-gradient(135deg, #5d7df9, #9a67e0);
+}
+
+.text-rotate:hover::before {
+  left: 100%;
+}
+
+/* Ensure text content is above the shine effect */
+.text-rotate > * {
+  position: relative;
+  z-index: 2;
 }
 
 .text-rotate-sr-only {
@@ -58,7 +87,7 @@
 
 /* Container for the rotating text to prevent layout shifts */
 .rotating-text-container {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   /* Fixed width based on longest expected word */
@@ -66,15 +95,17 @@
   height: 60px;
   position: relative;
   overflow: hidden;
+  margin: 0 0.3em;
 }
 
-/* Mobile responsive adjustments */
+/* Mobile responsive adjustments - consistent with site breakpoints */
 @media (max-width: 768px) {
   .text-rotate {
     min-width: 160px;
     height: 50px;
     font-size: 1rem;
     padding: 0 16px;
+    border-radius: 10px;
   }
   
   .rotating-text-container {
@@ -89,10 +120,40 @@
     height: 45px;
     font-size: 0.9rem;
     padding: 0 12px;
+    border-radius: 8px;
   }
   
   .rotating-text-container {
     width: 140px;
     height: 45px;
+  }
+}
+
+/* High contrast mode support - accessibility */
+@media (prefers-contrast: high) {
+  .text-rotate {
+    background: #333;
+    border: 2px solid white;
+    box-shadow: none;
+  }
+  
+  .text-rotate::before {
+    display: none;
+  }
+}
+
+/* Reduced motion accessibility - consistent with site */
+@media (prefers-reduced-motion: reduce) {
+  .text-rotate,
+  .text-rotate::before {
+    transition-duration: 0.1s;
+  }
+  
+  .text-rotate:hover {
+    transform: none;
+  }
+  
+  .text-rotate::before {
+    display: none;
   }
 }
