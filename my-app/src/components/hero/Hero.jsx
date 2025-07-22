@@ -42,23 +42,22 @@ const Hero = () => {
             <div className="rotating-text-container">
               <RotatingText
                 texts={rotatingWords}
-                rotationInterval={2800}
+                rotationInterval={3000}
                 transition={{ 
                   type: "spring", 
-                  damping: 28, 
-                  stiffness: 320, 
-                  duration: 0.5
+                  damping: 30, 
+                  stiffness: 400, 
+                  duration: 0.4
                 }}
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-100%", opacity: 0 }}
                 animatePresenceMode="wait"
                 splitBy="words"
-                staggerDuration={0.03}
+                staggerDuration={0.02}
                 staggerFrom="center"
               />
             </div>
-            
           </div>
           
           <div className={`hero__subtitle-container ${subtitleVisible ? 'hero__subtitle-container--visible' : ''}`}>

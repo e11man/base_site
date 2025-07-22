@@ -4,18 +4,21 @@
   justify-content: center;
   white-space: nowrap;
   position: relative;
-  /* Fixed dimensions to prevent layout shifts */
-  min-width: 200px;
-  height: 60px;
+  /* Fixed dimensions to prevent layout shifts - optimized for all words */
+  min-width: 240px;
+  height: auto;
+  min-height: 1.2em; /* Match line-height for perfect alignment */
   /* Cohesive theme styling - matching navbar gradient */
   background: linear-gradient(135deg, #6e8efb, #a777e3);
-  border-radius: 12px;
-  padding: 0 20px;
-  box-shadow: 0 4px 15px rgba(110, 142, 251, 0.3);
-  /* Text styling - consistent with site theme */
+  border-radius: 8px;
+  padding: 0.15em 0.6em;
+  box-shadow: 0 2px 8px rgba(110, 142, 251, 0.25);
+  /* Text styling - inherit parent font properties for seamless integration */
   color: white;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
   /* Smooth transitions - matching site's cubic-bezier */
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   /* Glassmorphism effect for modern look */
@@ -24,6 +27,9 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   /* Shine effect overlay */
   overflow: hidden;
+  /* Perfect vertical alignment */
+  vertical-align: baseline;
+  margin: 0 0.1em;
 }
 
 .text-rotate::before {
@@ -39,8 +45,8 @@
 }
 
 .text-rotate:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(110, 142, 251, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(110, 142, 251, 0.35);
   background: linear-gradient(135deg, #5d7df9, #9a67e0);
 }
 
@@ -85,47 +91,31 @@
   white-space: pre;
 }
 
-/* Container for the rotating text to prevent layout shifts */
+/* Container for the rotating text - seamless integration */
 .rotating-text-container {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  /* Fixed width based on longest expected word */
-  width: 200px;
-  height: 60px;
-  position: relative;
-  overflow: hidden;
-  margin: 0 0.3em;
+  display: inline !important;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 }
 
-/* Mobile responsive adjustments - consistent with site breakpoints */
+/* Mobile responsive adjustments - maintain proportions */
 @media (max-width: 768px) {
   .text-rotate {
-    min-width: 160px;
-    height: 50px;
-    font-size: 1rem;
-    padding: 0 16px;
-    border-radius: 10px;
-  }
-  
-  .rotating-text-container {
-    width: 160px;
-    height: 50px;
+    min-width: 200px;
+    padding: 0.12em 0.5em;
+    border-radius: 6px;
+    margin: 0 0.08em;
   }
 }
 
 @media (max-width: 480px) {
   .text-rotate {
-    min-width: 140px;
-    height: 45px;
-    font-size: 0.9rem;
-    padding: 0 12px;
-    border-radius: 8px;
-  }
-  
-  .rotating-text-container {
-    width: 140px;
-    height: 45px;
+    min-width: 180px;
+    padding: 0.1em 0.4em;
+    border-radius: 5px;
+    margin: 0 0.06em;
   }
 }
 
